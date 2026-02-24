@@ -1,0 +1,48 @@
+{
+  "_animations-CO0_dUXS.js": {
+    "file": "assets/animations-CO0_dUXS.js",
+    "name": "animations"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-CPn3LsJz.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-Bn720iiG.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "_animations-CO0_dUXS.js"
+    ],
+    "css": [
+      "assets/app-BCI2ZFMw.css"
+    ]
+  },
+  "resources/js/cart.js": {
+    "file": "assets/cart-DfgBju-f.js",
+    "name": "cart",
+    "src": "resources/js/cart.js",
+    "isEntry": true
+  },
+  "resources/js/notification.js": {
+    "file": "assets/notification-B7GsdhGf.js",
+    "name": "notification",
+    "src": "resources/js/notification.js",
+    "isEntry": true
+  },
+  "resources/js/pages/home.js": {
+    "file": "assets/home-C1dWtMai.js",
+    "name": "home",
+    "src": "resources/js/pages/home.js",
+    "isEntry": true,
+    "imports": [
+      "_animations-CO0_dUXS.js"
+    ]
+  }
+}

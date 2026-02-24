@@ -1,0 +1,65 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('products', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->text('description')->nullable();
+            $table->longText('long_description')->nullable();
+
+            // Inventory
+            $table->string('sku')->unique();
+            $table->string('barcode')->nullable();
+            $table->decimal('price', 10, 2);
+            $table->decimal('sale_price', 10, 2)->nullable();
+            $table->decimal('cost', 10, 2)->nullable();
+            $table->integer('stock_quantity')->default(0);
+            $table->integer('low_stock_threshold')->default(5);
+
+            // Categorization
+            $table->string('category')->nullable();
+            $table->string('subcategory')->nullable();
+            $table->json('tags')->nullable();
+            $table->json('attributes')->nullable();
+
+            // Status
+            $table->boolean('featured')->default(false);
+            $table->enum('status', ['active', 'inactive'])->default('active');
+
+            // SEO
+            $table->string('meta_title')->nullable();
+            $table->text('meta_description')->nullable();
+
+            // Media
+            $table->json('images')->nullable();
+
+            $table->timestamps();
+            $table->softDeletes();
+
+            // Indexes
+            $table->index('slug');
+            $table->index('sku');
+            $table->index('category');
+            $table->index('status');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('products');
+    }
+};

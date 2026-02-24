@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /checkout/
+Disallow: /cart/
+Disallow: /api/
+Disallow: /profile
+Disallow: /dashboard
+Disallow: /orders/
+Disallow: /wishlist/
+Disallow: /stripe/webhook
+Disallow: /printful/webhook
+
+Sitemap: https://printstore.com/sitemap.xml
