@@ -69,10 +69,10 @@ class FundraisingService
     public function getMerchProfit(): float
     {
         return (float) OrderItem::whereHas('order', fn ($q) => $q->where('payment_status', 'paid'))
-            ->whereNotNull('variant_id')
+            ->whereNotNull('product_variant_id')
             ->get()
             ->sum(function ($item) {
-                $variant = ProductVariant::find($item->variant_id);
+                $variant = ProductVariant::find($item->product_variant_id);
                 if (!$variant) return 0;
                 return ($item->price - ($variant->printful_cost ?? 0)) * $item->quantity;
             });
