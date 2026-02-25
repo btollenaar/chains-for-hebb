@@ -64,9 +64,8 @@
 
 /* --------------------------------------------------------------------------
    Font Imports - Inter + Oswald + Playfair Display
+   Note: Fonts loaded via <link> in layouts/app.blade.php <head>
    -------------------------------------------------------------------------- */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
 /* --------------------------------------------------------------------------
    Fluid Typography
@@ -344,9 +343,10 @@
 
 .card-bento {
     background: var(--surface-raised);
-    border: 1px solid var(--surface-border);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 1.5rem;
     padding: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -357,7 +357,8 @@
 
 .dark .card-bento {
     background: var(--surface-raised);
-    border-color: var(--surface-border);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* --------------------------------------------------------------------------
@@ -569,6 +570,152 @@
     border-radius: 0 0.75rem 0.75rem 0;
 }
 
+.progress-bar-fill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer-bar 2s ease-in-out infinite;
+}
+
+@keyframes shimmer-bar {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* --------------------------------------------------------------------------
+   Section Backgrounds
+   -------------------------------------------------------------------------- */
+
+.section-nature {
+    background-color: var(--surface);
+    background-image: var(--gradient-mesh);
+}
+
+.section-elevated {
+    background-color: var(--surface-raised);
+    position: relative;
+}
+
+.section-dark {
+    background: linear-gradient(135deg, #1A1A2E, #2D5016);
+    color: white;
+}
+
+/* --------------------------------------------------------------------------
+   Donate Button Pulse
+   -------------------------------------------------------------------------- */
+
+.btn-donate-pulse {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(232, 93, 4, 0.4); }
+    50% { box-shadow: 0 0 20px 4px rgba(232, 93, 4, 0.2); }
+}
+
+/* --------------------------------------------------------------------------
+   Hero Section — Full Bleed with Background Image
+   -------------------------------------------------------------------------- */
+
+.hero-nature {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1A1A2E 0%, #2D5016 40%, #1A1A2E 70%, #0F0F1A 100%);
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-nature--with-image {
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-nature::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(26,26,46,0.3) 0%, rgba(26,26,46,0.2) 40%, rgba(26,26,46,0.7) 80%, rgba(26,26,46,0.9) 100%);
+    z-index: 1;
+}
+
+.hero-nature::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 200' fill='none'%3E%3Cpath d='M0 200h1440V120c-120-20-240-10-360 10s-240 40-360 20-240-50-360-30-240 40-360 20V200Z' fill='%232D5016' opacity='0.15'/%3E%3Cpath d='M0 200h1440V150c-100-15-200-5-300 15s-200 30-300 15-200-30-300-15-200 25-240 15V200Z' fill='%232D5016' opacity='0.1'/%3E%3C/svg%3E") no-repeat bottom center;
+    background-size: 100% 200px;
+    z-index: 1;
+}
+
+/* Scroll down indicator */
+.scroll-indicator {
+    animation: bounce-down 2s ease-in-out infinite;
+}
+
+@keyframes bounce-down {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(8px); }
+    60% { transform: translateY(4px); }
+}
+
+/* --------------------------------------------------------------------------
+   Event Type Badges
+   -------------------------------------------------------------------------- */
+
+.badge-event-work_party {
+    background: linear-gradient(135deg, #2D8B46, #2D5016);
+    color: white;
+}
+
+.badge-event-fundraiser {
+    background: var(--gradient-accent);
+    color: white;
+}
+
+.badge-event-meetup {
+    background: var(--gradient-gold);
+    color: white;
+}
+
+.badge-event-tournament {
+    background: linear-gradient(135deg, #4F46E5, #7C3AED);
+    color: white;
+}
+
+/* --------------------------------------------------------------------------
+   Milestone Timeline
+   -------------------------------------------------------------------------- */
+
+.milestone-timeline {
+    position: relative;
+}
+
+.milestone-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 19px;
+    width: 2px;
+    background: var(--surface-border);
+}
+
+.milestone-reached .milestone-line {
+    background: var(--gradient-nature);
+}
+
 /* --------------------------------------------------------------------------
    Accessibility: Reduced Motion
    -------------------------------------------------------------------------- */
@@ -588,7 +735,9 @@
     .animate-blur-in,
     .animate-gradient-shift,
     .animate-pulse-soft,
-    .animate-progress-fill {
+    .animate-progress-fill,
+    .btn-donate-pulse,
+    .scroll-indicator {
         animation: none !important;
     }
 

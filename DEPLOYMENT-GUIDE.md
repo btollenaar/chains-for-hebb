@@ -13,6 +13,20 @@
 
 ### February 2026
 
+8. **Complete UI/UX Overhaul (February 24, 2026)**
+   - **SettingsComposer fix:** Added 6 missing feature flags (donations, events, gallery, fundraising_tracker, sponsors, cms_pages) — unlocks full navigation
+   - **Logo rebrand:** Replaced PrintStore PNG logos with Chains for Hebb SVG logos (light + dark mode variants with chain link icon)
+   - **Hero section:** Full-viewport hero with Gemini-generated forest background, dark overlay, GSAP entrance animations, inline progress snippet, scroll indicator
+   - **AI-generated imagery:** 9 site images generated via Google Gemini (hero, mission aerial, donate basket, events community, progress construction, 4 gallery placeholders) saved as WebP to `public/images/generated/`
+   - **Design system CSS:** Section backgrounds (nature, elevated, dark), enhanced card borders, progress bar shimmer animation, donate button pulse, event type badges, milestone timeline styles
+   - **Homepage redesign:** Side-by-side mission section, calendar-style event date blocks, sponsor tier display, dark CTA banner, forest-silhouette newsletter section, sticky mobile donate bar
+   - **Page improvements:** Donate (hero banner, quick amount buttons, inline progress), Progress (revenue breakdown cards, stacked budget bar chart, visual milestone timeline), Events (hero, type badges, "Next Event" highlight), Gallery (photo count badges, hover overlays)
+   - **Navigation:** CMS pages moved to "More" dropdown to prevent nav overflow
+   - **Email popup:** Rebranded to forest green, triggers on scroll (past hero) instead of timer, copy updated for fundraiser context
+   - **Alpine.js Intersect:** Added for scroll-triggered progress bar animation and counter
+   - **Image generation script:** `scripts/generate-images.py` — reads GEMINI_API_KEY from .env, generates all site imagery via Gemini 2.0 Flash
+   - **Status:** Build successful, all changes visual/frontend only
+
 7. **Product Edit Page Redesign (February 19, 2026)**
    - Restructured `/admin/products/{id}/edit` from single-column flat layout to 2-column card-based layout
    - Matches the Printful catalog setup page pattern: numbered step cards, sticky sidebar, product header with image

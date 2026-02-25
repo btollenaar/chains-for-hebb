@@ -12,7 +12,7 @@ if (!prefersReducedMotion) {
         if (!heroSection) return;
 
         // Set initial hidden state via JS (not Tailwind) so content is visible if JS fails
-        gsap.set('[data-hero-label], [data-hero-heading], [data-hero-description], [data-hero-cta]', { opacity: 0 });
+        gsap.set('[data-hero-label], [data-hero-heading], [data-hero-description], [data-hero-cta], [data-hero-progress], [data-hero-scroll]', { opacity: 0 });
 
         const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
@@ -34,6 +34,16 @@ if (!prefersReducedMotion) {
             { opacity: 0, scale: 0.95 },
             { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.7)' },
             '-=0.3'
+        )
+        .fromTo('[data-hero-progress]',
+            { opacity: 0, y: 15 },
+            { opacity: 1, y: 0, duration: 0.5 },
+            '-=0.2'
+        )
+        .fromTo('[data-hero-scroll]',
+            { opacity: 0, y: -10 },
+            { opacity: 0.7, y: 0, duration: 0.5 },
+            '-=0.1'
         );
 
         // Floating decorative elements parallax

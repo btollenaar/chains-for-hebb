@@ -49,8 +49,14 @@ class SettingsComposer
 
         // Load feature settings
         $featureSettings = [
-            'products' => (bool) Setting::get('features.products_enabled', true),
-            'blog' => (bool) Setting::get('features.blog_enabled', true),
+            'products' => (bool) Setting::get('features.products_enabled', config('business.features.products', true)),
+            'donations' => (bool) Setting::get('features.donations_enabled', config('business.features.donations', false)),
+            'events' => (bool) Setting::get('features.events_enabled', config('business.features.events', false)),
+            'gallery' => (bool) Setting::get('features.gallery_enabled', config('business.features.gallery', false)),
+            'fundraising_tracker' => (bool) Setting::get('features.fundraising_tracker_enabled', config('business.features.fundraising_tracker', false)),
+            'sponsors' => (bool) Setting::get('features.sponsors_enabled', config('business.features.sponsors', false)),
+            'cms_pages' => (bool) Setting::get('features.cms_pages_enabled', config('business.features.cms_pages', false)),
+            'blog' => (bool) Setting::get('features.blog_enabled', config('business.features.blog', true)),
         ];
 
         // Share with view

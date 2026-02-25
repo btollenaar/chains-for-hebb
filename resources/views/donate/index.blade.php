@@ -1,26 +1,46 @@
 <x-app-layout>
-    @section('title', 'Donate')
+    @section('title', 'Donate — Help Build Disc Golf at Hebb Park')
+
+    {{-- Hero Banner --}}
+    <section class="relative py-24 px-4 overflow-hidden" style="margin-top: -72px; padding-top: calc(72px + 4rem); background: linear-gradient(135deg, #2D5016, #1A1A2E);">
+        @if(file_exists(public_path('images/generated/donate-hero-basket.webp')))
+        <div class="absolute inset-0" style="background-image: url('{{ asset('images/generated/donate-hero-basket.webp') }}'); background-size: cover; background-position: center; opacity: 0.3;"></div>
+        @endif
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--surface)]"></div>
+        <div class="relative z-10 max-w-4xl mx-auto text-center">
+            <h1 class="font-display text-white text-fluid-4xl font-bold uppercase tracking-tight mb-4">Support Chains for Hebb</h1>
+            <p class="text-white/80 text-fluid-base max-w-2xl mx-auto mb-6">
+                Every donation brings us closer to building an 18-hole disc golf course at Hebb County Park.
+            </p>
+            {{-- Progress bar inline --}}
+            @if(isset($progressData))
+            <div class="max-w-md mx-auto">
+                <div class="flex items-center justify-between text-sm text-white/80 mb-2">
+                    <span class="font-bold text-white">${{ number_format($progressData['total_raised'] ?? 0, 0) }}</span>
+                    <span>of ${{ number_format($progressData['goal'] ?? 15000, 0) }}</span>
+                </div>
+                <div class="h-2 rounded-full overflow-hidden" style="background: rgba(255,255,255,0.2);">
+                    <div class="h-full rounded-full" style="width: {{ $progressData['percentage'] ?? 0 }}%; background: linear-gradient(90deg, #2D8B46, #8B6914);"></div>
+                </div>
+            </div>
+            @endif
+        </div>
+    </section>
 
     <section class="py-16 px-4" style="background-color: var(--surface);">
         <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-12">
-                <h1 class="page-heading text-gradient-nature mb-4">Support Chains for Hebb</h1>
-                <p class="text-fluid-base" style="color: var(--on-surface-muted);">
-                    Every donation brings us closer to building an 18-hole disc golf course at Hebb County Park.
-                </p>
-            </div>
-
             {{-- Donation Tiers --}}
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12" data-animate="stagger">
                 @foreach($tiers as $tier)
-                <div class="card-bento text-center cursor-pointer hover:shadow-glass-lg transition-all"
+                <div class="card-bento text-center cursor-pointer hover:shadow-glass-lg transition-all relative overflow-hidden group"
                      x-data
                      @click="document.getElementById('amount').value = {{ $tier->suggested_amount }}; document.getElementById('tier_id').value = {{ $tier->id }};">
+                    <div class="absolute top-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity" style="background: var(--gradient-accent);"></div>
                     @if($tier->badge_icon)
-                        <div class="text-3xl mb-3">{{ $tier->badge_icon }}</div>
+                        <div class="text-4xl mb-3">{{ $tier->badge_icon }}</div>
                     @endif
                     <h3 class="font-display text-lg font-bold mb-1" style="color: var(--on-surface);">{{ $tier->name }}</h3>
-                    <div class="text-2xl font-bold mb-2" style="color: var(--color-forest);">${{ number_format($tier->suggested_amount, 0) }}</div>
+                    <div class="text-3xl font-bold mb-2" style="color: var(--color-forest);">${{ number_format($tier->suggested_amount, 0) }}</div>
                     @if($tier->description)
                         <p class="text-sm" style="color: var(--on-surface-muted);">{{ $tier->description }}</p>
                     @endif
@@ -29,8 +49,20 @@
             </div>
 
             {{-- Donation Form --}}
-            <div class="card-bento max-w-lg mx-auto p-8">
+            <div class="card-bento max-w-lg mx-auto p-8" data-animate="fade-up">
                 <h2 class="font-display text-xl font-bold mb-6 text-center" style="color: var(--on-surface);">Make Your Donation</h2>
+
+                {{-- Quick amount buttons --}}
+                <div class="grid grid-cols-4 gap-2 mb-6" x-data>
+                    @foreach([10, 25, 50, 100] as $amt)
+                    <button type="button"
+                            @click="document.getElementById('amount').value = {{ $amt }}"
+                            class="py-2 rounded-lg font-semibold text-sm border transition-colors hover:border-[var(--color-forest)] hover:text-[var(--color-forest)]"
+                            style="border-color: var(--surface-border); color: var(--on-surface);">
+                        ${{ $amt }}
+                    </button>
+                    @endforeach
+                </div>
 
                 <form action="{{ route('donate.store') }}" method="POST" class="space-y-5">
                     @csrf
@@ -88,10 +120,10 @@
 
     {{-- Donor Wall Preview --}}
     @if($donorWall->isNotEmpty())
-    <section class="py-16 px-4" style="background-color: var(--surface-raised);">
+    <section class="py-16 px-4 section-elevated">
         <div class="max-w-4xl mx-auto">
-            <h2 class="home-section-heading text-center mb-8">Our Supporters</h2>
-            <div class="flex flex-wrap justify-center gap-3">
+            <h2 class="home-section-heading text-center mb-8" data-animate="fade-up">Our Supporters</h2>
+            <div class="flex flex-wrap justify-center gap-3" data-animate="stagger">
                 @foreach($donorWall as $donor)
                 <div class="badge-glass">
                     {{ $donor->display_name_attribute ?? $donor->donor_name }}

@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Donation;
 use App\Models\DonationTier;
 use App\Services\DonationService;
+use App\Services\FundraisingService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class DonationController extends Controller
 {
     public function __construct(
-        protected DonationService $donationService
+        protected DonationService $donationService,
+        protected FundraisingService $fundraisingService
     ) {}
 
     /**
@@ -22,8 +24,9 @@ class DonationController extends Controller
         $tiers = DonationTier::active()->ordered()->get();
         $donorWall = $this->donationService->getDonorWall(20);
         $stats = $this->donationService->getStats();
+        $progressData = $this->fundraisingService->getProgressData();
 
-        return view('donate.index', compact('tiers', 'donorWall', 'stats'));
+        return view('donate.index', compact('tiers', 'donorWall', 'stats', 'progressData'));
     }
 
     /**

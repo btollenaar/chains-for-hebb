@@ -61,23 +61,44 @@
                 </a>
                 @endif
 
-                {{-- CMS Pages with show_in_nav --}}
-                @if($featureSettings['cms_pages'] ?? false)
-                    @foreach(\App\Models\CmsPage::navPages()->get() as $navPage)
-                    <a href="{{ route('pages.show', $navPage) }}"
-                       class="nav-link {{ request()->is('pages/' . $navPage->slug) ? 'nav-link--active' : '' }}"
-                       :class="scrolled ? 'nav-link--scrolled' : 'nav-link--transparent'">
-                        {{ $navPage->title }}
-                    </a>
-                    @endforeach
-                @endif
-
                 @if($featureSettings['blog'] ?? true)
                 <a href="{{ route('blog.index') }}"
                    class="nav-link {{ request()->routeIs('blog.*') ? 'nav-link--active' : '' }}"
                    :class="scrolled ? 'nav-link--scrolled' : 'nav-link--transparent'">
                     Blog
                 </a>
+                @endif
+
+                {{-- CMS Pages dropdown (keeps nav clean) --}}
+                @if($featureSettings['cms_pages'] ?? false)
+                    @php $navPages = \App\Models\CmsPage::navPages()->get(); @endphp
+                    @if($navPages->isNotEmpty())
+                    <div x-data="{ open: false }" @click.away="open = false" class="relative">
+                        <button @click="open = !open"
+                                class="nav-link flex items-center gap-1 {{ request()->is('pages/*') ? 'nav-link--active' : '' }}"
+                                :class="scrolled ? 'nav-link--scrolled' : 'nav-link--transparent'">
+                            More
+                            <svg class="w-3.5 h-3.5 transition-transform" :class="open ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        <div x-show="open"
+                             x-transition:enter="transition ease-out duration-200"
+                             x-transition:enter-start="opacity-0 translate-y-1"
+                             x-transition:enter-end="opacity-100 translate-y-0"
+                             x-transition:leave="transition ease-in duration-150"
+                             x-transition:leave-start="opacity-100"
+                             x-transition:leave-end="opacity-0"
+                             class="absolute left-0 mt-1 w-48 glass-card py-2 z-50"
+                             style="display: none;">
+                            @foreach($navPages as $navPage)
+                            <a href="{{ route('pages.show', $navPage) }}"
+                               class="block px-4 py-2 text-sm transition-colors hover:bg-earth-primary/10 {{ request()->is('pages/' . $navPage->slug) ? 'text-earth-primary font-semibold' : '' }}"
+                               style="{{ request()->is('pages/' . $navPage->slug) ? '' : 'color: var(--on-surface);' }}">
+                                {{ $navPage->title }}
+                            </a>
+                            @endforeach
+                        </div>
+                    </div>
+                    @endif
                 @endif
 
             </div>

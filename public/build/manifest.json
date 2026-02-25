@@ -4,7 +4,7 @@
     "name": "animations"
   },
   "resources/css/app.css": {
-    "file": "assets/app-CPn3LsJz.css",
+    "file": "assets/app-1sIcrwIB.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -13,7 +13,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-Bn720iiG.js",
+    "file": "assets/app-Mu7LG-Q8.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -37,7 +37,7 @@
     "isEntry": true
   },
   "resources/js/pages/home.js": {
-    "file": "assets/home-C1dWtMai.js",
+    "file": "assets/home-qcEYETmK.js",
     "name": "home",
     "src": "resources/js/pages/home.js",
     "isEntry": true,

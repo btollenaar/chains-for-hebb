@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 48" fill="none">
+  <!-- Chain link icon -->
+  <g transform="translate(0, 8)" fill="#8FCB76">
+    <path d="M8 4a4 4 0 0 0-4 4v16a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4v-2h-2v2a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2h2V8a4 4 0 0 0-4-4H8Z"/>
+    <path d="M20 4a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4v-2h2v2a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2h-2V8a4 4 0 0 1 4-4h4Z"/>
+  </g>
+  <!-- Text: CHAINS FOR HEBB -->
+  <text x="36" y="34" font-family="Oswald, sans-serif" font-weight="700" font-size="28" letter-spacing="2" fill="#F5F1E8">CHAINS</text>
+  <text x="155" y="34" font-family="Oswald, sans-serif" font-weight="400" font-size="28" letter-spacing="2" fill="#D4A843">FOR</text>
+  <text x="205" y="34" font-family="Oswald, sans-serif" font-weight="700" font-size="28" letter-spacing="2" fill="#F5F1E8">HEBB</text>
+</svg>

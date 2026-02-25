@@ -141,6 +141,7 @@ class FundraisingService
             'goal' => $goal,
             'percentage' => $this->getProgressPercentage(),
             'next_milestone' => $nextMilestone,
+            'milestones' => FundraisingMilestone::ordered()->get(),
             'breakdown' => $revenueBreakdown,
             'donations_total' => $revenueBreakdown['donations'],
             'sponsors_total' => $revenueBreakdown['sponsors'],

@@ -1,4 +1,4 @@
-{{-- Email Capture Popup — glassmorphism slide-up offering WELCOME10 coupon --}}
+{{-- Email Capture Popup — glassmorphism slide-up for newsletter updates --}}
 <div x-data="{
         show: false,
         submitted: false,
@@ -21,7 +21,14 @@
                 if (Date.now() - dismissedAt < sevenDays) return;
             }
 
-            setTimeout(() => { this.show = true; }, 5000);
+            {{-- Wait until user scrolls past the hero before showing --}}
+            const showAfterScroll = () => {
+                if (window.scrollY > window.innerHeight * 0.6) {
+                    this.show = true;
+                    window.removeEventListener('scroll', showAfterScroll);
+                }
+            };
+            window.addEventListener('scroll', showAfterScroll);
         },
         dismiss() {
             this.show = false;
@@ -86,13 +93,13 @@
         <template x-if="!submitted">
             <div>
                 {{-- Icon --}}
-                <div class="flex items-center justify-center w-12 h-12 rounded-xl mb-4" style="background: linear-gradient(135deg, #FF3366, #E62E5C);">
-                    <i class="fas fa-tag text-white text-lg"></i>
+                <div class="flex items-center justify-center w-12 h-12 rounded-xl mb-4" style="background: linear-gradient(135deg, #2D5016, #4A7C28);">
+                    <i class="fas fa-bullseye text-white text-lg"></i>
                 </div>
 
-                <h3 class="text-lg font-bold font-display mb-1" style="color: var(--on-surface);">Get 10% Off</h3>
+                <h3 class="text-lg font-bold font-display mb-1" style="color: var(--on-surface);">Stay in the Loop</h3>
                 <p class="text-sm mb-4" style="color: var(--on-surface-muted);">
-                    Subscribe for updates and an exclusive discount on your first order.
+                    Get updates on our progress, events, and merch drops — plus 10% off your first order.
                 </p>
 
                 <form @submit.prevent="submit()" class="space-y-3">
@@ -107,9 +114,12 @@
                     <button
                         type="submit"
                         :disabled="loading"
-                        class="btn-gradient w-full py-2.5 rounded-xl text-sm font-semibold"
+                        class="w-full py-2.5 rounded-xl text-sm font-semibold text-white transition-colors"
+                        style="background: #2D5016;"
+                        onmouseover="this.style.background='#4A7C28'"
+                        onmouseout="this.style.background='#2D5016'"
                     >
-                        <span x-show="!loading">Claim My 10% Off</span>
+                        <span x-show="!loading">Subscribe & Get 10% Off</span>
                         <span x-show="loading"><i class="fas fa-spinner fa-spin mr-1"></i> Subscribing...</span>
                     </button>
                 </form>
@@ -132,16 +142,16 @@
                 <p class="text-sm mb-4" style="color: var(--on-surface-muted);" x-text="message"></p>
 
                 {{-- Coupon code box --}}
-                <div class="flex items-center justify-between gap-2 px-4 py-3 rounded-xl mb-4" style="background: var(--surface-raised); border: 2px dashed #FF3366;">
-                    <span class="font-mono font-bold tracking-wider" style="color: #FF3366;" x-text="coupon"></span>
-                    <button @click="copyCode()" class="text-xs font-semibold px-3 py-1 rounded-lg transition-colors" style="background: #FF3366; color: white;">
+                <div class="flex items-center justify-between gap-2 px-4 py-3 rounded-xl mb-4" style="background: var(--surface-raised); border: 2px dashed #2D5016;">
+                    <span class="font-mono font-bold tracking-wider" style="color: #2D5016;" x-text="coupon"></span>
+                    <button @click="copyCode()" class="text-xs font-semibold px-3 py-1 rounded-lg transition-colors" style="background: #2D5016; color: white;">
                         <span x-show="!copied">Copy</span>
                         <span x-show="copied">Copied!</span>
                     </button>
                 </div>
 
-                <a href="{{ route('products.index') }}?promo=WELCOME10" @click="dismiss()" class="btn-gradient inline-block w-full py-2.5 rounded-xl text-sm font-semibold text-center">
-                    Start Shopping
+                <a href="{{ route('products.index') }}?promo=WELCOME10" @click="dismiss()" class="inline-block w-full py-2.5 rounded-xl text-sm font-semibold text-center text-white transition-colors" style="background: #2D5016;">
+                    Shop Merch
                 </a>
             </div>
         </template>

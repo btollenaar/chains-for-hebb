@@ -5,12 +5,14 @@ import './dark-mode';
 
 import Alpine from 'alpinejs';
 import collapse from '@alpinejs/collapse';
+import intersect from '@alpinejs/intersect';
 
 // GLightbox - Image Gallery/Lightbox
 import GLightbox from 'glightbox';
 import 'glightbox/dist/css/glightbox.min.css';
 
 Alpine.plugin(collapse);
+Alpine.plugin(intersect);
 
 window.Alpine = Alpine;
 
