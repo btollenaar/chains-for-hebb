@@ -19,8 +19,8 @@ The platform includes POD-specific test data for realistic print-on-demand testi
   - Seeders: `ComprehensiveProductCategorySeeder.php`, `Comprehensive100ProductSeeder.php`
   - Fulfillment: All products fulfilled via Printful API on order payment
 
-- **6 Test Users** (1 admin, 5 customers + 4 legacy customers)
-  - Seeders: `CustomerSeeder.php` (admin + 4 legacy customers), `DummyUsersSeeder.php` (5 customers)
+- **8 Test Users** (3 admins, 5 customers + 4 legacy customers)
+  - Seeders: `CustomerSeeder.php` (3 admins + 4 legacy customers), `DummyUsersSeeder.php` (5 customers)
 
 - **5 Default Customer Tags** — VIP, Wholesale, Brand Fan, Repeat Customer, Newsletter VIP
   - Seeder: `TagSeeder.php`
@@ -35,11 +35,13 @@ The platform includes POD-specific test data for realistic print-on-demand testi
 
 ---
 
-## Admin Account
+## Admin Accounts
 
 | Name | Email | Role |
 |------|-------|------|
 | Harry Henderson | harry.admin@printstore.com | Admin (default) |
+| Ben Hier | ben.hier@chains4hebb.com | Admin |
+| Mike Crisp | mike.crisp@chains4hebb.com | Admin |
 
 ## Regular Customers
 

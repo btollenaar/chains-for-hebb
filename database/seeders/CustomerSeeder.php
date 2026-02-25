@@ -30,8 +30,8 @@ class CustomerSeeder extends Seeder
 
         // Create additional admin users for testing
         $admin2 = new Customer();
-        $admin2->name = 'Ben Heir';
-        $admin2->email = 'ben.heir@chains4hebb.com';
+        $admin2->name = 'Ben Hier';
+        $admin2->email = 'ben.hier@chains4hebb.com';
         $admin2->password = bcrypt('password');
         $admin2->phone = '503-555-0110';
         $admin2->email_verified_at = now();

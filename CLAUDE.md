@@ -463,6 +463,8 @@ All passwords: `password`
 | Role | Email |
 |------|-------|
 | Admin | `harry.admin@printstore.com` |
+| Admin | `ben.hier@chains4hebb.com` |
+| Admin | `mike.crisp@chains4hebb.com` |
 | Customer | `lisa.customer@example.com` |
 | Customer | `mark.customer@example.com` |
 
