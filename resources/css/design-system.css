@@ -464,7 +464,8 @@
    Form Inputs (glass styled)
    -------------------------------------------------------------------------- */
 
-.input-glass {
+.input-glass,
+.glass-input {
     background: var(--glass-bg);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -476,13 +477,15 @@
     width: 100%;
 }
 
-.input-glass:focus {
+.input-glass:focus,
+.glass-input:focus {
     outline: none;
     border-color: #2D5016;
     box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.15);
 }
 
-.input-glass::placeholder {
+.input-glass::placeholder,
+.glass-input::placeholder {
     color: var(--on-surface-muted);
 }
 
