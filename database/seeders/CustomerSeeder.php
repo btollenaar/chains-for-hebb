@@ -28,6 +28,37 @@ class CustomerSeeder extends Seeder
         $admin->is_admin = true;
         $admin->save();
 
+        // Create additional admin users for testing
+        $admin2 = new Customer();
+        $admin2->name = 'Ben Heir';
+        $admin2->email = 'ben.heir@chains4hebb.com';
+        $admin2->password = bcrypt('password');
+        $admin2->phone = '503-555-0110';
+        $admin2->email_verified_at = now();
+        $admin2->billing_street = '250 Broadway Ave';
+        $admin2->billing_city = 'Portland';
+        $admin2->billing_state = 'OR';
+        $admin2->billing_zip = '97201';
+        $admin2->billing_country = 'US';
+        $admin2->role = 'admin';
+        $admin2->is_admin = true;
+        $admin2->save();
+
+        $admin3 = new Customer();
+        $admin3->name = 'Mike Crisp';
+        $admin3->email = 'mike.crisp@chains4hebb.com';
+        $admin3->password = bcrypt('password');
+        $admin3->phone = '503-555-0120';
+        $admin3->email_verified_at = now();
+        $admin3->billing_street = '88 Division Street';
+        $admin3->billing_city = 'Portland';
+        $admin3->billing_state = 'OR';
+        $admin3->billing_zip = '97202';
+        $admin3->billing_country = 'US';
+        $admin3->role = 'admin';
+        $admin3->is_admin = true;
+        $admin3->save();
+
         // Create test customer accounts
         Customer::create([
             'name' => 'John Doe',
