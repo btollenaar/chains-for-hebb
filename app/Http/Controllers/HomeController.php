@@ -38,7 +38,7 @@ class HomeController extends Controller
 
         $featuredPhotos = $galleryService->getFeaturedPhotos(6);
 
-        $latestPosts = BlogPost::where('status', 'published')
+        $latestPosts = BlogPost::where('published', true)
             ->orderByDesc('published_at')
             ->limit(3)
             ->get();
