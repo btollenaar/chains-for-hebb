@@ -39,18 +39,22 @@
                 <div>
                     <h3 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-4">Contact</h3>
                     <ul class="space-y-3">
+                        @if(!empty($contactSettings['email']))
                         <li>
                             <a href="mailto:{{ $contactSettings['email'] }}" class="text-slate-400 hover:text-white transition-colors text-sm flex items-center gap-2.5">
                                 <i class="far fa-envelope w-4 text-center text-earth-primary/70"></i>
                                 <span>{{ $contactSettings['email'] }}</span>
                             </a>
                         </li>
+                        @endif
+                        @if(!empty($contactSettings['phone']))
                         <li>
                             <a href="tel:{{ $contactSettings['phone'] }}" class="text-slate-400 hover:text-white transition-colors text-sm flex items-center gap-2.5">
                                 <i class="fas fa-phone-alt w-4 text-center text-earth-primary/70"></i>
                                 <span>{{ $contactSettings['phone'] }}</span>
                             </a>
                         </li>
+                        @endif
                     </ul>
                 </div>
 
